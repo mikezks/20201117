@@ -18,6 +18,11 @@ export class FlightSearchComponent implements OnInit, OnDestroy {
     return this.flightService.flights;
   }
 
+  basket: object = {
+    "3": true,
+    "5": true
+  };
+
   constructor(/* @Inject(AbstractFlightService) @Optional()  */ private flightService: AbstractFlightService /* [] */) {
   }
 
