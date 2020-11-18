@@ -7,22 +7,28 @@ import { FormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { FlightSearchComponent } from './flight-search/flight-search.component';
+import { AbstractFlightService } from './flight-search/abstract-flight.service';
+import { FlightService } from './flight-search/flight.service';
+import { DummyFlightService } from './flight-search/dummy-flight.service';
 
 @NgModule({
-   imports: [
-      BrowserModule,
-      HttpClientModule,
-      FormsModule,
-   ],
-   declarations: [
-      AppComponent,
-      SidebarComponent,
-      NavbarComponent,
-      FlightSearchComponent
-   ],
-   providers: [],
-   bootstrap: [
-      AppComponent
-   ]
+  imports: [
+    BrowserModule,
+    HttpClientModule,
+    FormsModule,
+  ],
+  declarations: [
+    AppComponent,
+    SidebarComponent,
+    NavbarComponent,
+    FlightSearchComponent
+  ],
+  providers: [
+    // { provide: AbstractFlightService, useClass: FlightService, multi: true },
+    // { provide: AbstractFlightService, useClass: DummyFlightService, multi: true }
+  ],
+  bootstrap: [
+    AppComponent
+  ]
 })
 export class AppModule { }

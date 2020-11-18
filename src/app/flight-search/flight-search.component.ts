@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { of } from 'rxjs';
 import { Flight } from '../entities/flight';
+import { AbstractFlightService } from './abstract-flight.service';
 import { FlightService } from './flight.service';
 
 @Component({
@@ -13,7 +15,8 @@ export class FlightSearchComponent implements OnInit {
   flights: Flight[] = [];
   selectedFlight: Flight;
 
-  constructor(private flightService: FlightService) { }
+  constructor(/* @Inject(AbstractFlightService) @Optional()  */ private flightService: AbstractFlightService /* [] */) {
+  }
 
   ngOnInit(): void {
   }
