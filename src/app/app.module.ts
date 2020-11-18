@@ -10,6 +10,7 @@ import { FlightSearchComponent } from './flight-search/flight-search.component';
 import { AbstractFlightService } from './flight-search/abstract-flight.service';
 import { FlightService } from './flight-search/flight.service';
 import { DummyFlightService } from './flight-search/dummy-flight.service';
+import { CityPipe } from './shared/pipes/city.pipe';
 
 @NgModule({
   imports: [
@@ -21,7 +22,8 @@ import { DummyFlightService } from './flight-search/dummy-flight.service';
     AppComponent,
     SidebarComponent,
     NavbarComponent,
-    FlightSearchComponent
+    FlightSearchComponent,
+    CityPipe
   ],
   providers: [
     // { provide: AbstractFlightService, useClass: FlightService, multi: true },
