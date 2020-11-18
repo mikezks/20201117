@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent  {
   title = 'Hello World!';
+  showComp = true;
 
   changeTitle(): void {
     this.title = 'Hello Angular';

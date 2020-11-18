@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit, Optional } from '@angular/core';
+import { Component, Inject, OnDestroy, OnInit, Optional } from '@angular/core';
 import { of } from 'rxjs';
 import { Flight } from '../entities/flight';
 import { AbstractFlightService } from './abstract-flight.service';
@@ -9,27 +9,33 @@ import { FlightService } from './flight.service';
   templateUrl: './flight-search.component.html',
   styleUrls: ['./flight-search.component.css']
 })
-export class FlightSearchComponent implements OnInit {
+export class FlightSearchComponent implements OnInit, OnDestroy {
   from = 'Hamburg';
   to = 'Graz';
-  flights: Flight[] = [];
   selectedFlight: Flight;
 
-  constructor(/* @Inject(AbstractFlightService) @Optional()  */ private flightService: AbstractFlightService /* [] */) {
+  get flights(): Flight[] {
+    return this.flightService.flights;
+  }
+
+  constructor(/* @Inject(AbstractFlightService) @Optional()  */ private flightService: AbstractFlightService /* [] */,) {
   }
 
   ngOnInit(): void {
+    console.log('flight search was initialized!');
   }
 
   search(): void {
     this.flightService
       .find(this.from, this.to)
-      .subscribe(
-        flights => this.flights = flights
-      );
+      .subscribe();
   }
 
   select(flight: Flight): void {
     this.selectedFlight = flight;
+  }
+
+  ngOnDestroy(): void {
+    console.log('flight search was destroyed!');
   }
 }

@@ -7,6 +7,7 @@ import { AbstractFlightService } from './abstract-flight.service';
 
 @Injectable()
 export class FlightService implements AbstractFlightService {
+  flights: Flight[] = [];
 
   constructor(private http: HttpClient) { }
 
@@ -24,7 +25,8 @@ export class FlightService implements AbstractFlightService {
       .get<Flight[]>(url, { params, headers })
       .pipe(
         // map(flights => flights.length)
-        tap(flights => console.log('tap inside service find()', flights))
+        tap(flights => console.log('tap inside service find()', flights)),
+        tap(flights => this.flights = flights)
         // tap(console.log)
       );
   }

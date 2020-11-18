@@ -8,6 +8,7 @@ import { FlightService } from './flight.service';
   useClass: FlightService
 })
 export abstract class AbstractFlightService {
+  flights: Flight[];
 
   abstract find(from: string, to: string): Observable<Flight[]>;
 
