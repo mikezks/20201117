@@ -1,8 +1,7 @@
-import { Component, Inject, OnDestroy, OnInit, Optional } from '@angular/core';
-import { of, Subscription, timer } from 'rxjs';
-import { Flight } from '../entities/flight';
-import { AbstractFlightService } from './abstract-flight.service';
-import { FlightService } from './flight.service';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription, timer } from 'rxjs';
+import { Flight } from '../../../entities/flight';
+import { AbstractFlightService } from '../../services/abstract-flight.service';
 
 @Component({
   selector: 'app-flight-search',
@@ -24,7 +23,7 @@ export class FlightSearchComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     console.log('flight search was initialized!');
-    this.subscription = timer(0, 1000).subscribe(console.log);
+    // this.subscription = timer(0, 1000).subscribe(console.log);
   }
 
   search(): void {
@@ -39,6 +38,6 @@ export class FlightSearchComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     console.log('flight search was destroyed!');
-    this.subscription.unsubscribe();
+    // this.subscription.unsubscribe();
   }
 }

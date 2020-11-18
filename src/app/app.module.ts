@@ -1,29 +1,20 @@
-import { NavbarComponent } from './navbar/navbar.component';
-import { SidebarComponent } from './sidebar/sidebar.component';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 
+import { CoreModule } from './core/core.module';
+import { FlightBookingModule } from './flight-booking/flight-booking.module';
 import { AppComponent } from './app.component';
-import { FlightSearchComponent } from './flight-search/flight-search.component';
-import { AbstractFlightService } from './flight-search/abstract-flight.service';
-import { FlightService } from './flight-search/flight.service';
-import { DummyFlightService } from './flight-search/dummy-flight.service';
-import { CityPipe } from './shared/pipes/city.pipe';
 
 @NgModule({
+  declarations: [
+    AppComponent
+  ],
   imports: [
     BrowserModule,
     HttpClientModule,
-    FormsModule,
-  ],
-  declarations: [
-    AppComponent,
-    SidebarComponent,
-    NavbarComponent,
-    FlightSearchComponent,
-    CityPipe
+    CoreModule,
+    FlightBookingModule
   ],
   providers: [
     // { provide: AbstractFlightService, useClass: FlightService, multi: true },
