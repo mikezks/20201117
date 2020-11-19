@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { debounceTime } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { catchError, debounceTime } from 'rxjs/operators';
 import { validateCity, validateCityWithParams } from 'src/app/shared/validation/city-validator';
 
 @Component({
@@ -43,11 +44,18 @@ export class FlightEditComponent implements OnInit {
 
     this.editForm.valueChanges
       .pipe(
-        debounceTime(300)
+        debounceTime(300),
+        catchError(err => of({}))
       )
-      .subscribe(
-        editFormValue => console.log('Value of Edit Form', editFormValue)
-      );
+      .subscribe({
+        next: editFormValue => console.log('Value of Edit Form', editFormValue),
+        error: err => console.error(err),
+        complete: () => {}
+      });
+
+    this.editForm.patchValue({
+      id: 5000
+    });
   }
 
   save(): void {
