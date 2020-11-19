@@ -17,7 +17,7 @@ import { APP_ROUTES } from './app.routes';
     HttpClientModule,
     RouterModule.forRoot(APP_ROUTES),
     CoreModule,
-    FlightBookingModule
+    // FlightBookingModule  <-- remove from imports to enable Lazy Loading
   ],
   providers: [
     // { provide: AbstractFlightService, useClass: FlightService, multi: true },
