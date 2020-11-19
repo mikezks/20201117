@@ -16,8 +16,8 @@ describe('FlightSearchComponent', () => {
   let component: FlightSearchComponent;
   let fixture: ComponentFixture<FlightSearchComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule,
         RouterTestingModule,
@@ -31,7 +31,7 @@ describe('FlightSearchComponent', () => {
     fixture = TestBed.createComponent(FlightSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should create', () => {
     expect(component.flights.length).toBe(0);
@@ -65,6 +65,7 @@ describe('FlightSearchComponent', () => {
     const disabled = fixture
       .debugElement
       .query(By.css('button'))
+      // tslint:disable-next-line: no-string-literal
       .properties['disabled'];
 
     expect(disabled).toBeTruthy();
@@ -97,6 +98,7 @@ describe('Unit test with service mock: flight-search.component', () => {
     @Output() selectedChange = new EventEmitter<boolean>();
   }
 
+  // tslint:disable-next-line: directive-selector
   @Directive({ selector: 'input[city]' })
   class CityValidatorDirective {
     @Input() city: string[];
@@ -109,7 +111,7 @@ describe('Unit test with service mock: flight-search.component', () => {
     transform = v => v;
   }
 
-  beforeEach(async(() => {
+  beforeEach(async () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule
@@ -133,7 +135,7 @@ describe('Unit test with service mock: flight-search.component', () => {
     fixture = TestBed.createComponent(FlightSearchComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-  }));
+  });
 
   it('should not load flights w/o from and to', () => {
     component.from = '';
