@@ -6,20 +6,34 @@
 
   <div class="content">
 
-      <form>
+      <form #f="ngForm">
           <div class="form-group">
               <label>From:</label>
-              <input [(ngModel)]="from" name="from" class="form-control">
+              <input [(ngModel)]="from" name="from" class="form-control" required minlength="3" city>
           </div>
+          <div *ngIf="f?.controls['from']?.invalid" class="alert alert-danger">
+            An error occurred!
+          </div>
+          <div *ngIf="f?.controls['from']?.hasError('minlength')" class="alert alert-danger">
+            Please enter at least 3 chars.
+          </div>
+          <div *ngIf="f?.controls['from']?.hasError('city')" class="alert alert-danger">
+            Please enter a valid city name.<br>
+            Valid cities: {{ f?.controls['from']?.errors.city.validCities | json }}
+          </div>
+
           <div class="form-group">
               <label>To:</label>
-              <input [(ngModel)]="to" name="to" class="form-control">
+              <input [(ngModel)]="to" name="to" class="form-control" required>
+          </div>
+          <div *ngIf="f?.controls['to']?.invalid" class="alert alert-danger">
+            An error occurred!
           </div>
 
           <div class="form-group">
           <button
               class="btn btn-default"
-              [disabled]="!from || !to"
+              [disabled]="!f?.valid"
               (click)="search()">Search</button>
           </div>
       </form>
